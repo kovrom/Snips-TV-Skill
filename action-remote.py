@@ -109,7 +109,8 @@ def turnoff(hermes, intent_message):
     hermes.publish_end_session(intent_message.session_id, "turning off TV")	
 
 def turnon(hermes, intent_message):
-    SnipsRemote.send_value("turnon")
+    SnipsRemote.send_value("audio_power")
+    SnipsRemote.send_value("tv_power")
     hermes.publish_end_session(intent_message.session_id, "turning TV on")
 	
 def rightbutton(hermes, intent_message):
@@ -140,10 +141,10 @@ if __name__ == "__main__":
     with Hermes(MQTT_ADDR) as h:
        h.subscribe_intent("GabonV23:ChannelUP", channelup) \
         .subscribe_intent("GabonV23:ChannelDown", channeldown) \
-        .subscribe_intent("GabonV23:Turnon", turnon) \
-	.subscribe_intent("GabonV23:Turnoff", turnoff) \
+        .subscribe_intent("kovrom:Turnon", turnon) \
+	.subscribe_intent("kovrom:Turnoff", turnoff) \
         .subscribe_intent("GabonV23:volumedown", volumedown) \
-        .subscribe_intent("GabonV23:Mutebutton",Mutebutton ) \
+        .subscribe_intent("kovrom:Mutebutton",Mutebutton ) \
         .subscribe_intent("GabonV23:volumeup", volumeup) \
         .subscribe_intent("GabonV23:volumedown", volumedown) \
         .subscribe_intent("GabonV23:EnterTestMode", entering_test_mode) \
@@ -152,7 +153,7 @@ if __name__ == "__main__":
         .subscribe_intent("GabonV23:leftbutton", leftbutton) \
         .subscribe_intent("GabonV23:Menu", Menu) \
 	.subscribe_intent("GabonV23:FactoryReset", factoryreset) \
-        .subscribe_intent("GabonV23:SourceButton", source) \
+        .subscribe_intent("kovrom:SourceButton", source) \
 	.subscribe_intent("GabonV23:EnterButton", enterbutton) \
 	.subscribe_intent("GabonV23:SmartHub", SmartHub) \
         .loop_forever()
