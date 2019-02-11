@@ -5,15 +5,15 @@ A Snips Skill to control any remote controller on your local network.
 
 Hardware Requirements:
 ---------------------
--A Raspberry Pi ~40$
+-A Raspberry Pi
 
--A mic ~25$
+-A mic
 
--A Speaker~10$
+-A Speaker
 
--A 4 GB Micro SD card~14$
+-A Micro SD card
 
--Broadlink RM3 Mini ~ 24$
+-Broadlink RM3 Mini
 
 
 
