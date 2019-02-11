@@ -16,6 +16,11 @@ import os
 import subprocess
 from os.path import expanduser
 
+#roku lib
+from roku import Roku
+roku = Roku('192.168.1.146')
+
+
 
 
 
@@ -61,7 +66,29 @@ class Skill:
             config = read_configuration_file("config.ini")
 
 
+#roku related	
+def rokuHome():
+    roku.home()
+def roku_chilled_cow():
+    roku.home()
+    spotify = roku['Spotify Music'] 
+    spotify.launch()
+    time.sleep(10)
+    roku.up()    
+    roku.right()
+    roku.select()
+    time.sleep(5)
+    roku.down()
+    roku.select()
+    time.sleep(5)
+    roku.select()   	
 
+def rokuPlay():
+	roku.play()
+	
+def rokuBack():
+	roku.back()
+	
 def callback(hermes, intent_message):
         pass
 
@@ -69,22 +96,32 @@ def remote_toggle(hermes, intent_message):
     hermes.skill.remote.toggle_on_off()
 
 def channelup(hermes, intent_message):
-    SnipsRemote.send_value("ChannelUP")
+    SnipsRemote.send_value("tv_chup")
 
 def channeldown(hermes, intent_message):
-    SnipsRemote.send_value("ChannelDOWN")
+    SnipsRemote.send_value("tv_chdown")
 
 #Volume Related Skills
 def volumeup(hermes, intent_message):
-    SnipsRemote.send_value("Volume up")
+    SnipsRemote.send_value("audio_volup")
     VolumeManip.how_much_up(intent_message.slots.Numbers.first().value)
 
 def volumedown(hermes, intent_message):
-    SnipsRemote.send_value("Volume down")
+    SnipsRemote.send_value("audio_voldown")
     VolumeManip.how_much_down(intent_message.slots.Numbers.first().value)
 
 def Mutebutton(hermes, intent_message):
-    SnipsRemote.send_value("Mutebutton")
+    SnipsRemote.send_value("audio_mute")
+
+def Advert15(hermes, intent_message):
+    SnipsRemote.send_value("audio_mute")
+    time.sleep(15)
+    SnipsRemote.send_value("audio_mute")
+
+def Advert30(hermes, intent_message):
+    SnipsRemote.send_value("audio_mute")
+    time.sleep(30)
+    SnipsRemote.send_value("audio_mute")
 
 #This Skill searches for the necessary info.  and fills it in the config file.
 def entering_test_mode(hermes, intent_message):
@@ -105,7 +142,8 @@ def SmartHub(hermes, intent_message):
     hermes.publish_end_session(intent_message.session_id, "Hello Smart World")	
     
 def turnoff(hermes, intent_message):
-    SnipsRemote.send_value("turn off")
+    SnipsRemote.send_value("audio_power")
+    SnipsRemote.send_value("tv_power")
     hermes.publish_end_session(intent_message.session_id, "turning off TV")	
 
 def turnon(hermes, intent_message):
@@ -122,7 +160,7 @@ def leftbutton(hermes, intent_message):
     hermes.publish_end_session(intent_message.session_id, "Goes right lol")
 	
 def source(hermes, intent_message):
-    SnipsRemote.send_value("SourceButton")
+    SnipsRemote.send_value("tv_input")
     hermes.publish_end_session(intent_message.session_id, "Yup")
 
 def factoryreset(hermes, intent_message):
@@ -156,4 +194,11 @@ if __name__ == "__main__":
         .subscribe_intent("kovrom:SourceButton", source) \
 	.subscribe_intent("GabonV23:EnterButton", enterbutton) \
 	.subscribe_intent("GabonV23:SmartHub", SmartHub) \
+	.subscribe_intent("kovrom:Advert15", Advert15) \
+	.subscribe_intent("kovrom:Advert30", Advert30) \
+	.subscribe_intent("kovrom:PlayRoku", rokuPlay) \
+	.subscribe_intent("kovrom:HomeRoku", rokuHome) \
+	.subscribe_intent("kovrom:PauseRoku", rokuPlay) \
+	.subscribe_intent("kovrom:BackRoku", rokuBack) \
+	.subscribe_intent("kovrom:ChilledCowSpotify", roku_chilled_cow) \
         .loop_forever()
