@@ -69,7 +69,7 @@ class Skill:
 #roku related	
 def rokuHome():
     roku.home()
-def roku_chilled_cow():
+def roku_chilled_cow(hermes, intent_message):
     roku.home()
     spotify = roku['Spotify Music'] 
     spotify.launch()
@@ -83,10 +83,10 @@ def roku_chilled_cow():
     time.sleep(5)
     roku.select()   	
 
-def rokuPlay():
+def rokuPlay(hermes, intent_message):
 	roku.play()
 	
-def rokuBack():
+def rokuBack(hermes, intent_message):
 	roku.back()
 	
 def callback(hermes, intent_message):
