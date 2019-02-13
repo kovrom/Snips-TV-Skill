@@ -123,12 +123,12 @@ class VolumeManip:
         @staticmethod
         def how_much_up(the_number_to_iterate):
                 for i in range (1,int(the_number_to_iterate)):
-                        SnipsRemote.send_value("Volume up")
+                        SnipsRemote.send_value("audio_volup")
 
         @staticmethod
         def how_much_down(the_number_to_iterate):
                 for i in range (1,int(the_number_to_iterate)):
-                        SnipsRemote.send_value("Volume down")
+                        SnipsRemote.send_value("audio_voldown")
 
 
 
