@@ -15,6 +15,8 @@ Hardware Requirements:
 
 -Broadlink RM3 Mini
 
+-Roku
+
 
 
 
