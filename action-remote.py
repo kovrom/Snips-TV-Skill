@@ -67,7 +67,7 @@ class Skill:
 
 
 #roku related	
-def rokuHome():
+def rokuHome(hermes, intent_message):
     roku.home()
 def roku_chilled_cow(hermes, intent_message):
     roku.home()
