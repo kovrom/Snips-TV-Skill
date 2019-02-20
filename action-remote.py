@@ -79,6 +79,8 @@ def roku_chilled_cow(hermes, intent_message):
     roku.select()
     time.sleep(5)
     roku.down()
+    roku.down()
+    roku.right()	
     roku.select()
     time.sleep(5)
     roku.select()   	
@@ -139,7 +141,7 @@ def Menu(hermes, intent_message):
 	
 def SmartHub(hermes, intent_message):
     SnipsRemote.send_value("SmartHub")
-    hermes.publish_end_session(intent_message.session_id, "Hello Smart World")	
+    hermes.publish_end_session(intent_message.session_id, "Ok. Smart Hub")	
     
 def turnoff(hermes, intent_message):
     SnipsRemote.send_value("audio_power")
@@ -153,15 +155,15 @@ def turnon(hermes, intent_message):
 	
 def rightbutton(hermes, intent_message):
     SnipsRemote.send_value("rightbutton")
-    hermes.publish_end_session(intent_message.session_id, "Goes right")
+    hermes.publish_end_session(intent_message.session_id, "Ok. Right.")
 
 def leftbutton(hermes, intent_message):
     SnipsRemote.send_value("leftbutton")
-    hermes.publish_end_session(intent_message.session_id, "Goes right lol")
+    hermes.publish_end_session(intent_message.session_id, "Ok. Left.")
 	
 def source(hermes, intent_message):
     SnipsRemote.send_value("tv_input")
-    hermes.publish_end_session(intent_message.session_id, "Yup")
+    hermes.publish_end_session(intent_message.session_id, "Ok")
 
 def factoryreset(hermes, intent_message):
     if intent_message.slots.YESNO.first().value == "Yes":
@@ -172,7 +174,7 @@ def factoryreset(hermes, intent_message):
 
 def enterbutton(hermes, intent_message):
     SnipsRemote.send_value("Enter")
-    hermes.publish_end_session(intent_message.session_id, "gotcha")
+    hermes.publish_end_session(intent_message.session_id, "Ok. Enter.")
 	
 	
 if __name__ == "__main__":
