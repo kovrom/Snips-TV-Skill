@@ -114,7 +114,7 @@ def rokuBack(hermes, intent_message):
 	roku.back()
 
 def rokuPluto(hermes, intent_message):
-	pluto = roku['Pluto TV - It''s Free TV']
+	pluto = roku['Pluto TV - It \'s Free TV']
     pluto.launch()
 
 def rokuSpotify(hermes, intent_message):
