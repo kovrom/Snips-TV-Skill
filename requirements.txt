@@ -1,4 +1,4 @@
-hermes_python
+hermes_python>=0.3
 configparser==3.5.0
 netaddr==0.7.19
 pycryptodome==3.4.11
