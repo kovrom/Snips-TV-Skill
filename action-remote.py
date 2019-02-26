@@ -69,6 +69,7 @@ class Skill:
 #roku related	
 def rokuHome(hermes, intent_message):
     roku.home()
+
 def roku_chilled_cow(hermes, intent_message):
     roku.home()
     spotify = roku['Spotify Music'] 
@@ -114,7 +115,7 @@ def rokuBack(hermes, intent_message):
 	roku.back()
 
 def rokuPluto(hermes, intent_message):
-	pluto = roku['Pluto TV - It \'s Free TV']
+	pluto = roku['SomaFM']
     pluto.launch()
 
 def rokuSpotify(hermes, intent_message):
