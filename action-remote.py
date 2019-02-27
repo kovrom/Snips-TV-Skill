@@ -46,8 +46,8 @@ def read_configuration_file(configuration_file):
         with io.open(configuration_file, encoding=CONFIGURATION_ENCODING_FORMAT) as f:
             conf_parser = SnipsConfigParser()
             conf_parser.readfp(f)
-	    print(f)
-            return conf_parser.to_dict()
+        print(f)
+        return conf_parser.to_dict()
     except (IOError, ConfigParser.Error) as e:
         return dict()
 
@@ -109,25 +109,25 @@ def roku_groove_salad(hermes, intent_message):
     roku.select()
 
 def rokuPlay(hermes, intent_message):
-	roku.play()
-	
+    roku.play()
+
 def rokuBack(hermes, intent_message):
-	roku.back()
+    roku.back()
 
 def rokuPluto(hermes, intent_message):
-	pluto = roku['SomaFM']
+    pluto = roku['SomaFM']
     pluto.launch()
 
 def rokuSpotify(hermes, intent_message):
-	spotify = roku['Spotify Music']
+    spotify = roku['Spotify Music']
     spotify.launch()
 
 def rokuPrime(hermes, intent_message):
-	primeVideo = roku['Prime Video']
+    primeVideo = roku['Prime Video']
     primeVideo.launch()
 
 def rokuNetflix(hermes, intent_message):
-	netflix = roku['Netflix']
+    netflix = roku['Netflix']
     netflix.launch()
 
 def callback(hermes, intent_message):
@@ -217,14 +217,14 @@ def factoryreset(hermes, intent_message):
 def enterbutton(hermes, intent_message):
     SnipsRemote.send_value("Enter")
     hermes.publish_end_session(intent_message.session_id, "Ok. Enter.")
-	
+
 
 if __name__ == "__main__":
     with Hermes(MQTT_ADDR) as h:
        h.subscribe_intent("kovrom:ChannelUP", channelup) \
         .subscribe_intent("GabonV23:ChannelDown", channeldown) \
         .subscribe_intent("kovrom:Turnon", turnon) \
-	    .subscribe_intent("kovrom:Turnoff", turnoff) \
+        .subscribe_intent("kovrom:Turnoff", turnoff) \
         .subscribe_intent("GabonV23:volumedown", volumedown) \
         .subscribe_intent("kovrom:Mutebutton",Mutebutton ) \
         .subscribe_intent("GabonV23:volumeup", volumeup) \
@@ -234,22 +234,22 @@ if __name__ == "__main__":
         .subscribe_intent("GabonV23:rightbutton", rightbutton) \
         .subscribe_intent("GabonV23:leftbutton", leftbutton) \
         .subscribe_intent("GabonV23:Menu", Menu) \
-	    .subscribe_intent("GabonV23:FactoryReset", factoryreset) \
+        .subscribe_intent("GabonV23:FactoryReset", factoryreset) \
         .subscribe_intent("kovrom:SourceButton", source) \
-	    .subscribe_intent("GabonV23:EnterButton", enterbutton) \
-	    .subscribe_intent("GabonV23:SmartHub", SmartHub) \
-	    .subscribe_intent("kovrom:Advert15", Advert15) \
-	    .subscribe_intent("kovrom:Advert30", Advert30) \
-	    .subscribe_intent("kovrom:LiveTV", liveTV) \
-	    .subscribe_intent("kovrom:PlayRoku", rokuPlay) \
-	    .subscribe_intent("kovrom:HomeRoku", rokuHome) \
-	    .subscribe_intent("kovrom:PauseRoku", rokuPlay) \
-	    .subscribe_intent("kovrom:BackRoku", rokuBack) \
-	    .subscribe_intent("kovrom:ChilledCowSpotify", roku_chilled_cow) \
-	    .subscribe_intent("kovrom:StartPlutoTV", rokuPluto) \
-	    .subscribe_intent("kovrom:StartSpotify", rokuSpotify) \
-	    .subscribe_intent("kovrom:StartPrimeVideo", rokuPrime) \
-	    .subscribe_intent("kovrom:StartNetflix", rokuNetflix) \
-	    .subscribe_intent("kovrom:JazzPlstSpotify", roku_jazz_pls) \
-	    .subscribe_intent("kovrom:GrooveSalad", roku_groove_salad) \
+        .subscribe_intent("GabonV23:EnterButton", enterbutton) \
+        .subscribe_intent("GabonV23:SmartHub", SmartHub) \
+        .subscribe_intent("kovrom:Advert15", Advert15) \
+        .subscribe_intent("kovrom:Advert30", Advert30) \
+        .subscribe_intent("kovrom:LiveTV", liveTV) \
+        .subscribe_intent("kovrom:PlayRoku", rokuPlay) \
+        .subscribe_intent("kovrom:HomeRoku", rokuHome) \
+        .subscribe_intent("kovrom:PauseRoku", rokuPlay) \
+        .subscribe_intent("kovrom:BackRoku", rokuBack) \
+        .subscribe_intent("kovrom:ChilledCowSpotify", roku_chilled_cow) \
+        .subscribe_intent("kovrom:StartPlutoTV", rokuPluto) \
+        .subscribe_intent("kovrom:StartSpotify", rokuSpotify) \
+        .subscribe_intent("kovrom:StartPrimeVideo", rokuPrime) \
+        .subscribe_intent("kovrom:StartNetflix", rokuNetflix) \
+        .subscribe_intent("kovrom:JazzPlstSpotify", roku_jazz_pls) \
+        .subscribe_intent("kovrom:GrooveSalad", roku_groove_salad) \
         .loop_forever()
