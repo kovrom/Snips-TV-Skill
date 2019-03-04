@@ -20,6 +20,16 @@ from os.path import expanduser
 from roku import Roku
 roku = Roku('192.168.1.146')
 
+systemsState = {
+    "avIsOn" : 0,
+    "liveTvIsOn" : 0,
+    "muted" : 0,
+    "spotifyIsOn" : 0,
+    "somaIsOn" : 0,
+    "rokuAtHome" : 0,
+    "rokuPaused" : 0
+}
+
 
 
 
@@ -72,6 +82,7 @@ def rokuHome(hermes, intent_message):
 
 def roku_chilled_cow(hermes, intent_message):
     roku.home()
+    time.sleep(5)
     spotify = roku['Spotify Music'] 
     spotify.launch()
     time.sleep(15)
@@ -88,6 +99,7 @@ def roku_chilled_cow(hermes, intent_message):
 
 def roku_jazz_pls(hermes, intent_message):
     roku.home()
+    time.sleep(5)
     spotify = roku['Spotify Music']
     spotify.launch()
     time.sleep(15)
@@ -103,6 +115,7 @@ def roku_jazz_pls(hermes, intent_message):
 
 def roku_groove_salad(hermes, intent_message):
     roku.home()
+    time.sleep(5)
     somaFM = roku['SomaFM']
     somaFM.launch()
     time.sleep(15)
@@ -115,18 +128,26 @@ def rokuBack(hermes, intent_message):
     roku.back()
 
 def rokuPluto(hermes, intent_message):
-    pluto = roku['SomaFM']
+    roku.home()
+    time.sleep(5)
+    pluto = roku['Pluto TV - It\'s Free TV']
     pluto.launch()
 
 def rokuSpotify(hermes, intent_message):
+    roku.home()
+    time.sleep(5)
     spotify = roku['Spotify Music']
     spotify.launch()
 
 def rokuPrime(hermes, intent_message):
+    roku.home()
+    time.sleep(5)
     primeVideo = roku['Prime Video']
     primeVideo.launch()
 
 def rokuNetflix(hermes, intent_message):
+    roku.home()
+    time.sleep(5)
     netflix = roku['Netflix']
     netflix.launch()
 
@@ -222,10 +243,9 @@ def enterbutton(hermes, intent_message):
 if __name__ == "__main__":
     with Hermes(MQTT_ADDR) as h:
        h.subscribe_intent("kovrom:ChannelUP", channelup) \
-        .subscribe_intent("GabonV23:ChannelDown", channeldown) \
+        .subscribe_intent("kovrom:ChannelDown", channeldown) \
         .subscribe_intent("kovrom:Turnon", turnon) \
         .subscribe_intent("kovrom:Turnoff", turnoff) \
-        .subscribe_intent("GabonV23:volumedown", volumedown) \
         .subscribe_intent("kovrom:Mutebutton",Mutebutton ) \
         .subscribe_intent("GabonV23:volumeup", volumeup) \
         .subscribe_intent("GabonV23:volumedown", volumedown) \
@@ -233,11 +253,9 @@ if __name__ == "__main__":
         .subscribe_intent("GabonV23:LearningMode", learningmode) \
         .subscribe_intent("GabonV23:rightbutton", rightbutton) \
         .subscribe_intent("GabonV23:leftbutton", leftbutton) \
-        .subscribe_intent("GabonV23:Menu", Menu) \
         .subscribe_intent("GabonV23:FactoryReset", factoryreset) \
         .subscribe_intent("kovrom:SourceButton", source) \
         .subscribe_intent("GabonV23:EnterButton", enterbutton) \
-        .subscribe_intent("GabonV23:SmartHub", SmartHub) \
         .subscribe_intent("kovrom:Advert15", Advert15) \
         .subscribe_intent("kovrom:Advert30", Advert30) \
         .subscribe_intent("kovrom:LiveTV", liveTV) \
